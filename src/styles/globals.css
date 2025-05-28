@@ -3,7 +3,5 @@
 @import "tailwindcss/utilities";
 
 body {
-  background: #0a0a0a;
-  color: #fff;
   font-family: sans-serif;
 }

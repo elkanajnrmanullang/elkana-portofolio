@@ -1,10 +1,38 @@
+import Head from "next/head";
 import { Typewriter } from "react-simple-typewriter";
 import Navbar from "@/components/Navbar";
 import { FaInstagram, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="relative w-full h-screen text-white overflow-hidden">
+    <div className="relative w-full h-screen text-white overflow-hidden pt-20">
+      {/* SEO Head Tags */}
+      <Head>
+        <title>Elkana Juanro Manullang | Full-Stack Engineer & UI/UX Designer</title>
+        <meta
+          name="description"
+          content="Portofolio resmi Elkana Jnr, seorang Full-Stack Engineer dan UI/UX Designer yang berpengalaman dalam pengembangan web modern dan sistem informasi."
+        />
+        <meta
+          name="keywords"
+          content="Full-Stack Developer, Web Developer, UI UX Designer, Portofolio Elkana, React Developer, Laravel Developer, System Engineer"
+        />
+        <meta name="author" content="Elkana Juanro Manullang" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* Open Graph Tags for Social Media Sharing */}
+        <meta property="og:title" content="Elkana Jnr - Full-Stack Engineer & UI/UX Designer" />
+        <meta
+          property="og:description"
+          content="Selamat datang di portofolio Elkana Juanro Manullang. Tampilkan proyek terbaik Anda bersama pengembang full-stack profesional."
+        />
+        <meta property="og:image" content="/assets/images/thumbnail.jpg" />
+        <meta property="og:url" content="https://yourdomain.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
       {/* Background image layer */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -14,7 +42,7 @@ export default function Home() {
       {/* Overlay black with 20% opacity */}
       <div className="absolute inset-0 bg-black opacity-50 z-0" />
 
-      {/* Navbar (transparan di atas layer) */}
+      {/* Navbar */}
       <Navbar />
 
       {/* Hero Content */}
@@ -25,7 +53,7 @@ export default function Home() {
           <span className="text-neutral-50">
             <Typewriter
               words={[
-                "Elkana Jnr",
+                "Elkana Jnr Manullang",
                 "Full-Stack Engineer",
                 "UI/UX Designer",
                 "System Enthusiast",
