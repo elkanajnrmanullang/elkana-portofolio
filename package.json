@@ -1,5 +1,5 @@
 {
-  "name": "elkana-portofolio",
+  "name": "elkanajnrmanullang",
   "version": "0.1.0",
   "postbuild": "next-sitemap",
   "private": true,
