@@ -21,7 +21,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
 
-        {/* Open Graph Tags for Social Media Sharing */}
+        {/* Open Graph Tags */}
         <meta property="og:title" content="Elkana Jnr - Full-Stack Engineer & UI/UX Designer" />
         <meta
           property="og:description"
@@ -33,15 +33,16 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      {/* Background image layer */}
+      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/assets/images/background-home.jpg')" }}
       />
-
       <div className="absolute inset-0 bg-black opacity-50 z-0" />
 
+      {/* Navbar */}
       <Navbar />
+
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col justify-center items-center text-center h-full px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 z-10">Hello</h1>
@@ -65,13 +66,14 @@ export default function Home() {
           </span>
         </h2>
 
-        {/* Sosial Media Icon */}
+        {/* Sosial Media Icons */}
         <div className="flex gap-6 mt-6 z-10 text-2xl">
           <a
             href="https://instagram.com/elkanajnr_manullang"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-neutral-400"
+            aria-label="Instagram"
           >
             <FaInstagram />
           </a>
@@ -80,6 +82,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-neutral-400"
+            aria-label="Twitter"
           >
             <FaTwitter />
           </a>
@@ -88,6 +91,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-neutral-400"
+            aria-label="LinkedIn"
           >
             <FaLinkedin />
           </a>
@@ -96,10 +100,21 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-neutral-400"
+            aria-label="GitHub"
           >
             <FaGithub />
           </a>
         </div>
+
+        {/* Tombol Download CV */}
+        <a
+          href="/assets/files/Elkana_CV.pdf"
+          download
+          className="mt-4 text-sm bg-white text-black px-6 py-2 rounded-md hover:bg-gray-300 transition font-semibold z-10"
+          aria-label="Download CV"
+        >
+          Download CV
+        </a>
       </div>
     </div>
   );
