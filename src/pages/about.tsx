@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function About() {
   return (
     <>
-      {/* ✅ SEO Meta Tags */}
+      {/* SEO Meta Tags */}
       <Head>
         <title>About - Elkana Juanro Manullang</title>
         <meta
@@ -54,7 +54,7 @@ export default function About() {
         </p>
       </section>
 
-      {/* ✅ EDUCATION & EXPERIENCE */}
+      {/* EDUCATION & EXPERIENCE */}
       <section className="bg-gray-50 py-16 px-4 sm:px-10 lg:px-24 text-gray-800">
         <h2 className="text-3xl font-bold text-center mb-2">Education & Experience</h2>
         <div className="text-center text-gray-500 mb-12 text-sm">
@@ -107,7 +107,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ✅ SKILL OVERVIEW */}
+      {/* SKILL OVERVIEW */}
       <section className="bg-white py-16 px-4 sm:px-10 lg:px-24 text-left text-gray-800">
         <h2 className="text-3xl font-bold text-center mb-12">Skill Overview</h2>
 

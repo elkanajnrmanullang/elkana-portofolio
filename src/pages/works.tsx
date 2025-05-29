@@ -1,5 +1,5 @@
-// src/pages/works.tsx
 import React, { useState } from "react";
+import Head from "next/head";
 import { FaSearchPlus, FaLink } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
@@ -47,7 +47,7 @@ const allProjects: Project[] = [
     category: "Web",
     mediaType: "video",
     image: "/assets/videos/web-bandung.mp4",
-    link: "https://github.com/elkanajnrmanullang/web-wisata-bandung", // ganti sesuai URL jika ada
+    link: "https://github.com/elkanajnrmanullang/web-wisata-bandung",
     status: "Done",
   },
   {
@@ -95,6 +95,23 @@ export default function Works() {
 
   return (
     <div className="min-h-screen bg-white text-black pb-20">
+      <Head>
+        <title>My Projects - Elkana Jnr Manullang</title>
+        <meta
+          name="description"
+          content="Explore various web, design, and system projects by Elkana Juanro Manullang. Full-stack developer and UI/UX designer."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="My Projects | Elkana Portfolio" />
+        <meta
+          property="og:description"
+          content="Explore various web, design, and system projects by Elkana Juanro Manullang."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://your-domain.com/works" />
+        <meta property="og:image" content="https://your-domain.com/assets/images/thumbnail.png" />
+      </Head>
+
       <Navbar />
       <div className="text-center pt-20">
         <h1 className="text-4xl font-bold mb-6">My Projects</h1>
@@ -177,9 +194,7 @@ export default function Works() {
         </div>
       </div>
 
-      {modalImage && (
-        <Modal image={modalImage} onClose={() => setModalImage(null)} />
-      )}
+      {modalImage && <Modal image={modalImage} onClose={() => setModalImage(null)} />}
     </div>
   );
 }

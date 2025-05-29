@@ -39,12 +39,9 @@ export default function Home() {
         style={{ backgroundImage: "url('/assets/images/background-home.jpg')" }}
       />
 
-      {/* Overlay black with 20% opacity */}
       <div className="absolute inset-0 bg-black opacity-50 z-0" />
 
-      {/* Navbar */}
       <Navbar />
-
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col justify-center items-center text-center h-full px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 z-10">Hello</h1>

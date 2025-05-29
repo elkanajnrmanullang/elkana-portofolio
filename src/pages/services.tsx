@@ -58,8 +58,6 @@ const Services = () => {
         <meta name="author" content="Elkana Juanro Manullang" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://yourdomain.com/services" />
-
-        {/* Open Graph Meta (Facebook/LinkedIn) */}
         <meta
           property="og:title"
           content="Web Development & UI/UX Services | Elkana Jnr"
@@ -71,8 +69,6 @@ const Services = () => {
         <meta property="og:image" content="/assets/images/og-services.jpg" />
         <meta property="og:url" content="https://yourdomain.com/services" />
         <meta property="og:type" content="website" />
-
-        {/* Twitter Meta */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"

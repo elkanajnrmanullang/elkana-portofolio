@@ -1,38 +1,52 @@
-# Dependencies
-/node_modules
+# =========================================
+# ✅ Node.js Dependencies
+/node_modules/
 
-# Build output
-/.next
-/out
-/build
+# =========================================
+# ✅ Build Output
+/.next/
+/out/
+/build/
 
-# Environment files (keep secrets safe)
-.env
-.env.*        # includes .env.local, .env.production, etc
-!.env.example # allow template
+# =========================================
+# ✅ Environment Files (Keep Secrets Safe)
+/.env
+.env.*
+!.env.example  # Allow sharing example template only
 
-# Vercel deployment config
-.vercel
+# =========================================
+# ✅ Deployment Configs
+.vercel/
+.netlify/
+firebase.json
+now.json
 
-# TypeScript
+# =========================================
+# ✅ TypeScript Artifacts
 *.tsbuildinfo
 next-env.d.ts
 
-# Log files
+# =========================================
+# ✅ Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
 
-# OS & Editor specific
+# =========================================
+# ✅ OS & Editor Specific Files
 .DS_Store
 Thumbs.db
 *.swp
 *.swo
 *.local
+.idea/
+.vscode/
+*.code-workspace
 
-# Yarn PnP
+# =========================================
+# ✅ Yarn Plug'n'Play
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -40,10 +54,20 @@ Thumbs.db
 !.yarn/releases
 !.yarn/versions
 
-# Coverage reports
-/coverage
+# =========================================
+# ✅ Coverage Reports
+/coverage/
+*.lcov
 
-# SSL / Secret keys (prevent accidental exposure)
+# =========================================
+# ✅ SSL / Security Keys
 /*.pem
 /*.key
 /*.crt
+
+# =========================================
+# ✅ Other
+*.log
+*.tgz
+*.bak
+*.tmp
