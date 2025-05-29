@@ -6,7 +6,7 @@ Ini adalah website portofolio pribadi saya yang dibangun menggunakan teknologi m
 
 ## 🚀 Live Demo
 
-🌐 [Ada saat terdeploy nanti] 
+🌐 https://elkanajnrmannullang.vercel.app/
 
 ---
 
