@@ -1,44 +1,59 @@
+"use client";
 import React from "react";
 import Head from "next/head";
+import Navbar from "@/components/Navbar";
+import { motion } from "framer-motion";
 import {
   FaCode,
-  FaPencilRuler,
-  FaProjectDiagram,
+  FaBrain,
+  FaServer,
   FaCogs,
-  FaChartLine,
+  FaNetworkWired,
   FaRocket,
 } from "react-icons/fa";
 
 const services = [
   {
-    icon: <FaCode className="text-4xl text-black mb-4" />,
+    icon: (
+      <FaCode className="text-4xl mb-4 text-blue-600 group-hover:text-white transition-colors" />
+    ),
     title: "Full-Stack Web Development",
-    desc: "End-to-end web application development using React.js, Laravel, and PostgreSQL. Includes responsive frontend design, efficient backend development, and seamless API/database integration.",
+    desc: "End-to-end development of scalable web applications using Laravel, Next.js, and React.js. Includes RESTful API, authentication, and database integration for seamless user experiences.",
   },
   {
-    icon: <FaPencilRuler className="text-4xl text-black mb-4" />,
-    title: "UI/UX Design",
-    desc: "Modern, user-centered design through structured user research. Involves wireframing, prototyping, and usability testing for optimal user experience.",
+    icon: (
+      <FaBrain className="text-4xl mb-4 text-purple-600 group-hover:text-white transition-colors" />
+    ),
+    title: "AI & Workflow Automation",
+    desc: "Building intelligent automation systems and AI integrations using Python, Flask, and LLM APIs to streamline data processing and decision-making workflows.",
   },
   {
-    icon: <FaProjectDiagram className="text-4xl text-black mb-4" />,
-    title: "System Architecture & Planning",
-    desc: "Planning and designing scalable, maintainable systems with the right tech stack, efficient database structures, and modular code architecture.",
+    icon: (
+      <FaServer className="text-4xl mb-4 text-emerald-600 group-hover:text-white transition-colors" />
+    ),
+    title: "Backend API Development",
+    desc: "Designing and implementing robust, secure backend APIs with efficient database schemas, caching, and validation logic to support web or mobile frontends.",
   },
   {
-    icon: <FaCogs className="text-4xl text-black mb-4" />,
-    title: "Custom Business Systems",
-    desc: "Custom business systems such as POS, rental management, and admin dashboards built based on client-specific workflows and needs.",
+    icon: (
+      <FaNetworkWired className="text-4xl mb-4 text-orange-600 group-hover:text-white transition-colors" />
+    ),
+    title: "System Architecture & DevOps",
+    desc: "Planning and deploying reliable infrastructures with CI/CD, Docker, and VPS hosting. Focused on scalability, performance, and long-term system stability.",
   },
   {
-    icon: <FaChartLine className="text-4xl text-black mb-4" />,
-    title: "Data Dashboard & Analytics",
-    desc: "Interactive dashboards for real-time data visualization using Chart.js, Google Analytics, or custom APIs to support business decisions.",
+    icon: (
+      <FaCogs className="text-4xl mb-4 text-red-600 group-hover:text-white transition-colors" />
+    ),
+    title: "Business System Development",
+    desc: "Custom web-based systems like dashboards, inventory management, and workflow automation tools tailored to fit your business needs and operations.",
   },
   {
-    icon: <FaRocket className="text-4xl text-black mb-4" />,
+    icon: (
+      <FaRocket className="text-4xl mb-4 text-indigo-600 group-hover:text-white transition-colors" />
+    ),
     title: "Deployment & Optimization",
-    desc: "Deploying apps to production servers with CI/CD setup, performance tuning, SSL integration, and basic security configuration like firewalls and HTTPS.",
+    desc: "Deploying, optimizing, and monitoring applications for production. Includes server configuration, performance tuning, SSL, and analytics integration.",
   },
 ];
 
@@ -49,56 +64,77 @@ const Services = () => {
         <title>Services - Elkana Juanro Manullang</title>
         <meta
           name="description"
-          content="Discover services by Elkana Juanro Manullang, a full-stack engineer providing modern web development, UI/UX design, and business system solutions."
+          content="Explore professional services by Elkana Juanro Manullang — Full-Stack Developer specializing in Laravel, React.js, and AI Automation systems."
         />
-        <meta
-          name="keywords"
-          content="Full-stack developer services, UI UX designer, React.js Laravel developer, web developer Indonesia, Elkana Jnr portfolio, business system development"
-        />
-        <meta name="author" content="Elkana Juanro Manullang" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://yourdomain.com/services" />
-        <meta
-          property="og:title"
-          content="Web Development & UI/UX Services | Elkana Jnr"
-        />
-        <meta
-          property="og:description"
-          content="Explore full-stack web development, UI/UX design, system planning, and analytics services by Elkana Jnr, tailored to your business needs."
-        />
-        <meta property="og:image" content="/assets/images/og-services.jpg" />
-        <meta property="og:url" content="https://yourdomain.com/services" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Web Development & UI/UX Design - Elkana Jnr"
-        />
-        <meta
-          name="twitter:description"
-          content="Professional and scalable solutions for businesses. Elkana Jnr provides full-stack engineering and design services for your digital growth."
-        />
-        <meta name="twitter:image" content="/assets/images/og-services.jpg" />
       </Head>
 
-      <section className="min-h-screen pt-20 pb-20 flex flex-col justify-center items-center px-6 text-center bg-white text-gray-800">
-        <h2 className="text-4xl font-bold text-center mb-12 tracking-tight">
+      {/* Navbar Fixed */}
+      <div className="fixed top-0 w-full z-50">
+        <Navbar />
+      </div>
+
+      {/* SERVICES SECTION */}
+      <section className="min-h-screen pt-28 pb-20 flex flex-col items-center px-6 text-center bg-gray-50 text-gray-800 overflow-hidden relative">
+        {/* Gradient glow background */}
+        <motion.div
+          className="absolute top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/10 to-violet-500/10 rounded-full blur-3xl opacity-70 pointer-events-none"
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        />
+
+        <motion.h2
+          className="text-4xl font-bold text-center mb-4 tracking-tight relative z-10"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           My Services
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        </motion.h2>
+
+        <motion.p
+          className="text-gray-500 mb-12 max-w-2xl relative z-10"
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          I help businesses and teams build modern, scalable, and intelligent
+          systems through full-stack development, AI integration, and
+          automation-driven solutions.
+        </motion.p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto relative z-10">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-gradient-to-br from-white to-gray-100 border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg transition duration-300 hover:scale-[1.02] group"
+              className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm backdrop-blur-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group"
+              initial={{ opacity: 0, y: 60, rotateX: 15 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.1,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.05,
+                rotateY: 3,
+                rotateX: -3,
+                transition: { duration: 0.4, ease: "easeOut" },
+              }}
             >
-              <div className="flex justify-center">{service.icon}</div>
-              <h3 className="text-xl font-semibold mt-4 mb-2 text-center group-hover:text-black transition">
-                {service.title}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed text-center">
+              <div className="flex justify-center transform group-hover:scale-110 transition-transform duration-300">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold mt-4 mb-3">{service.title}</h3>
+              <p className="text-sm text-gray-500 group-hover:text-gray-300 leading-relaxed">
                 {service.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>

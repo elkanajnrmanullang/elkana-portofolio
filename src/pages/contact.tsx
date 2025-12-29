@@ -19,10 +19,14 @@ export default function Contact() {
     judul: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [captcha, setCaptcha] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -65,13 +69,22 @@ export default function Contact() {
     <div className="min-h-screen bg-white text-gray-800 pt-24 pb-20 px-8">
       <Head>
         <title>Contact | Elkana Portfolio</title>
-        <meta name="description" content="Send a message to Elkana Juanro Manullang via email or WhatsApp. Reach out for collaboration or inquiries." />
+        <meta
+          name="description"
+          content="Send a message to Elkana Juanro Manullang via email or WhatsApp. Reach out for collaboration or inquiries."
+        />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Contact | Elkana Portfolio" />
-        <meta property="og:description" content="Send a message to Elkana Juanro Manullang via email or WhatsApp." />
+        <meta
+          property="og:description"
+          content="Send a message to Elkana Juanro Manullang via email or WhatsApp."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://your-domain.com/contact" />
-        <meta property="og:image" content="https://your-domain.com/assets/images/contact-banner.png" />
+        <meta
+          property="og:image"
+          content="https://your-domain.com/assets/images/contact-banner.png"
+        />
       </Head>
 
       <h1 className="text-4xl font-bold text-center mb-8">Contact Me</h1>
@@ -90,20 +103,26 @@ export default function Contact() {
             <FaEnvelope className="text-2xl text-gray-700" />
           </div>
           <p className="font-semibold">Email</p>
-          <p className="text-sm text-gray-500">elkanajnrmanullang8@gmail.com</p>
+          <p className="text-sm text-gray-500">elkanamanullang7@gmail.com</p>
         </div>
         <div>
           <div className="flex justify-center mb-2">
             <FaPhone className="text-2xl text-gray-700" />
           </div>
           <p className="font-semibold">Phone</p>
-          <p className="text-sm text-gray-500">+62 813 1885 8187</p>
+          <p className="text-sm text-gray-500">+62 813 8239 4412</p>
         </div>
       </div>
 
       {/* Formulir */}
-      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto grid gap-6" aria-label="Contact Form">
-        <label htmlFor="name" className="sr-only">Full Name</label>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-2xl mx-auto grid gap-6"
+        aria-label="Contact Form"
+      >
+        <label htmlFor="name" className="sr-only">
+          Full Name
+        </label>
         <input
           id="name"
           type="text"
@@ -114,7 +133,9 @@ export default function Contact() {
           required
           className="border p-3 rounded-md w-full bg-gray-100"
         />
-        <label htmlFor="email" className="sr-only">Email</label>
+        <label htmlFor="email" className="sr-only">
+          Email
+        </label>
         <input
           id="email"
           type="email"
@@ -125,7 +146,9 @@ export default function Contact() {
           required
           className="border p-3 rounded-md w-full bg-gray-100"
         />
-        <label htmlFor="noTelp" className="sr-only">Phone Number</label>
+        <label htmlFor="noTelp" className="sr-only">
+          Phone Number
+        </label>
         <input
           id="noTelp"
           type="text"
@@ -135,7 +158,9 @@ export default function Contact() {
           onChange={handleChange}
           className="border p-3 rounded-md w-full bg-gray-100"
         />
-        <label htmlFor="judul" className="sr-only">Message Title</label>
+        <label htmlFor="judul" className="sr-only">
+          Message Title
+        </label>
         <input
           id="judul"
           type="text"
@@ -146,7 +171,9 @@ export default function Contact() {
           required
           className="border p-3 rounded-md w-full bg-gray-100"
         />
-        <label htmlFor="message" className="sr-only">Message</label>
+        <label htmlFor="message" className="sr-only">
+          Message
+        </label>
         <textarea
           id="message"
           name="message"
@@ -171,10 +198,14 @@ export default function Contact() {
         </button>
 
         {status === "success" && (
-          <p className="text-green-600">Your message has been sent successfully!</p>
+          <p className="text-green-600">
+            Your message has been sent successfully!
+          </p>
         )}
         {status === "error" && (
-          <p className="text-red-600">Failed to send your message. Please try again.</p>
+          <p className="text-red-600">
+            Failed to send your message. Please try again.
+          </p>
         )}
         {status === "loading" && <p className="text-gray-500">Sending...</p>}
       </form>

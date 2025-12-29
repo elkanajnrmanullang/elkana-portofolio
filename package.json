@@ -1,6 +1,7 @@
 {
   "name": "elkana-portofolio",
   "version": "0.1.0",
+  "type": "module",
   "postbuild": "next-sitemap",
   "private": true,
   "scripts": {
