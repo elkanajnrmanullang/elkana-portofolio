@@ -1,17 +1,30 @@
-"use client";
 import Head from "next/head";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 
-export default function About() {
+export async function getStaticProps() {
+  const lastUpdated = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date());
+
+  return {
+    props: {
+      lastUpdated,
+    },
+  };
+}
+
+export default function About({ lastUpdated }: { lastUpdated: string }) {
   return (
     <>
       <Head>
         <title>About - Elkana Juanro Manullang</title>
         <meta
           name="description"
-          content="Elkana Juanro Manullang is an Informatics Engineering student at Institut Teknologi Sumatera with hands-on experience in Laravel, React.js, UI/UX Design, and scalable system architecture."
+          content="Elkana Juanro Manullang is a Fresh Graduate in Informatics Engineering from Institut Teknologi Sumatera with hands-on experience in Laravel, React.js, Python, and scalable system architecture."
         />
         <meta
           name="keywords"
@@ -19,11 +32,9 @@ export default function About() {
         />
         <meta name="author" content="Elkana Juanro Manullang" />
       </Head>
-      {/* Navbar Fixed di atas */}
       <div className="fixed top-0 w-full z-50">
         <Navbar />
       </div>
-      {/* HERO / BIO SECTION */}
       <section className="min-h-screen pt-24 pb-10 flex flex-col justify-center items-center px-6 text-center bg-white text-gray-800">
         <h2 className="text-4xl font-bold mb-2 tracking-tight">About Me</h2>
         <div className="text-2xl mb-6 text-gray-400">✻</div>
@@ -31,17 +42,16 @@ export default function About() {
         <p className="max-w-xl text-gray-600 mb-10 text-lg leading-relaxed">
           I&apos;m a Software Engineer specializing in Full-Stack Web
           Development, focusing on backend systems, AI automation, and
-          performance-driven interfaces. Currently pursuing my 8th semester in
-          Informatics Engineering at Institut Teknologi Sumatera (ITERA), I
-          combine academic expertise with hands-on experience in building
-          scalable, production-ready applications using Laravel, React.js, and
-          Next.js.
+          performance-driven interfaces. As a fresh graduate in Informatics 
+          Engineering from Institut Teknologi Sumatera (ITERA), I combine academic 
+          expertise with 2 years of hands-on experience in building scalable, 
+          production-ready applications using Laravel, React.js, and Python.
         </p>
 
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-violet-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
           <Image
-            src="/assets/images/profile.jpg"
+            src="/assets/images/about_profile.jpg"
             alt="Elkana Juanro Manullang"
             width={192}
             height={192}
@@ -59,21 +69,18 @@ export default function About() {
           Scalable Systems Builder
         </p>
         <p className="max-w-3xl mt-6 text-gray-600 leading-relaxed text-base md:text-lg">
-          As the founder of Celestara Eterna, a hybrid digital tech & creative
-          agency, I&apos;ve collaborated with clients and teams to deliver
-          tailor-made web solutions that enhance efficiency and user experience.
-          My experience includes developing backend APIs, AI-driven automation
-          tools, and modern UI interfaces for real-world projects — from
-          business process automation to intelligent data systems. I’m
-          passionate about transforming complex challenges into elegant,
-          maintainable systems. With every project, my focus remains on clean
-          architecture, reliability, and measurable business value. If you’re
-          looking for a developer who understands both technology and the bigger
-          picture of digital growth, let&apos;s build something impactful
-          together.
+          With a proven track record of improving operational efficiency by up to 
+          90% and boosting client business performance, I have collaborated with 
+          teams to deliver tailor-made web solutions. My experience includes 
+          developing scalable backend APIs, AI-driven automation pipelines, 
+          and responsive UI interfaces for real-world projects. I’m passionate about 
+          transforming complex data challenges into elegant, maintainable systems. 
+          With every project, my focus remains on clean architecture, reliability, 
+          and measurable business value. If you’re looking for a developer who 
+          understands both technology and digital growth, let&apos;s build something 
+          impactful together.
         </p>
       </section>
-      {/* EDUCATION & EXPERIENCE */}
       <section className="bg-gray-50 py-20 px-4 sm:px-10 lg:px-24 text-gray-800 border-t border-gray-200">
         <h2 className="text-3xl font-bold text-center mb-2">
           Education & Experience
@@ -83,7 +90,6 @@ export default function About() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Education Column */}
           <div className="space-y-8">
             <h3 className="text-xl font-bold border-b-2 border-black pb-2 inline-block">
               Education
@@ -91,22 +97,18 @@ export default function About() {
 
             <div className="bg-white border-l-4 border-black p-8 shadow-sm hover:shadow-md transition rounded-r-xl">
               <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded mb-2">
-                2022 - Present
+                Aug 2022 - Apr 2026
               </span>
               <p className="font-bold text-lg">Institut Teknologi Sumatera</p>
               <p className="text-gray-600">
-                Bachelor of Informatics Engineering
+                Bachelor of Informatics Engineering (GPA: 3.38)
               </p>
               <p className="text-sm text-gray-500 mt-2 italic">
-                Currently pursuing a Bachelor’s degree in Informatics
-                Engineering with a strong focus on software engineering, web
-                technologies, and AI integration. Actively involved in campus
-                activities as a laboratory assistant and student organization
-                leader, contributing to academic and operational projects.
-                Through coursework and extracurriculars, I’ve developed a solid
-                foundation in backend architecture, frontend frameworks, and
-                data-driven systems, preparing me to deliver real-world digital
-                solutions in professional environments.
+                Graduated with a strong focus on software engineering, backend
+                architecture, and AI integration. Actively involved in campus
+                activities as a student organization leader (HMIF ITERA) and 
+                frontend developer, consistently delivering real-world digital
+                solutions.
               </p>
             </div>
 
@@ -119,7 +121,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Experience Column */}
           <div className="space-y-8">
             <h3 className="text-xl font-bold border-b-2 border-blue-600 pb-2 inline-block">
               Experience
@@ -127,99 +128,78 @@ export default function About() {
 
             <div className="bg-white border-l-4 border-purple-600 p-8 shadow-sm hover:shadow-md transition rounded-r-xl">
               <h4 className="font-semibold text-md mb-1 text-purple-600">
-                Mar 2024 - Present
+                Mar 2024 - Mar 2026
               </h4>
-              <p className="font-bold text-lg">Founder - Celestara Eterna</p>
+              <p className="font-bold text-lg">Full-Stack Engineer - Celestara Eterna</p>
               <p className="text-sm text-gray-600 mt-2">
-                As the founder of Celestara Eterna, a hybrid digital tech and
-                creative agency, I lead the development of full-stack web and
-                automation solutions tailored to client needs. My work spans
-                system architecture, backend development (Laravel, PostgreSQL),
-                and frontend engineering (React.js, Next.js, Tailwind CSS). I
-                oversee Agile-style project workflows, ensuring scalability,
-                maintainability, and measurable outcomes for clients.
-                Additionally, I integrate AI automation pipelines and optimize
-                backend performance for businesses aiming to modernize their
-                digital infrastructure.
+                Developed responsive web applications and scalable backend systems 
+                using ReactJS, TypeScript, HTML5, CSS3, and PHP (Laravel). Improved 
+                client business performance by up to 27% by translating product 
+                requirements into interactive UI/UX designs and integrating 
+                RESTful APIs for seamless data flow.
               </p>
             </div>
 
             <div className="bg-white border-l-4 border-blue-600 p-8 shadow-sm hover:shadow-md transition rounded-r-xl relative">
-              {/* <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">
-                LATEST
-              </div> */}
               <h4 className="font-semibold text-md mb-1 text-blue-600">
                 Jun 2025 - Aug 2025
               </h4>
               <p className="font-bold text-lg">
-                Software Developer Intern - Telkom Indonesia
+                Software Developer Intern - PT. Telkom Indonesia
               </p>
               <p className="text-sm text-gray-600 mt-2">
-                During my internship at Telkom Indonesia, I developed an
-                automated reporting system using Python (Flask, Pandas) and
-                PostgreSQL, replacing manual Excel-based workflows. The system
-                handled over 40,000 data rows, reducing report generation time
-                by more than 80% through automated data merging, validation, and
-                export pipelines using OpenPyXL and XlsxWriter. I also
-                implemented a real-time dashboard for tracking daily STB
-                Replacement and Dismantling activities, aligned with Telkom
-                Akses operational standards.
+                Developed an automated backend system using Python Pandas and Flask 
+                to process over 40,000 operational data records daily. Improved 
+                reporting usability by building interactive web-based dashboards 
+                (HTML5/CSS3), reducing manual errors and increasing monitoring 
+                efficiency across the department.
               </p>
             </div>
 
             <div className="bg-white border-l-4 border-blue-600 p-8 shadow-sm hover:shadow-md transition rounded-r-xl">
               <h4 className="font-semibold text-md mb-1 text-blue-600">
-                Mar 2025 - Aug 2025
+                Mar 2025 - Jul 2025
               </h4>
               <p className="font-bold text-lg">
-                Laravel Developer (Intern) - PT. Winnicode Garuda Indonesia
+                Laravel Developer Intern - PT. Winnicode Garuda Teknologi
               </p>
               <p className="text-sm text-gray-600 mt-2">
-                As a Laravel Developer Intern, I worked on enhancing and
-                maintaining existing Laravel-based enterprise systems, focusing
-                on API integration, authentication modules, and database
-                optimization. I contributed to developing The Celestern Times, a
-                full-stack news portal built with Laravel and React.js,
-                featuring role-based access control (RBAC) and an integrated
-                admin dashboard. Throughout the project, I actively collaborated
-                using GitHub workflow (branching, pull requests, code reviews)
-                and participated in Agile sprints for feature delivery and
-                documentation.
+                Developed a full-stack web-based news portal and RESTful API 
+                using PHP (Laravel) and React. Implemented system integration 
+                for real-time content synchronization, optimized backend performance 
+                for stability, and integrated Google OAuth authentication to 
+                enhance the frontend user experience.
               </p>
             </div>
 
             <div className="bg-white border-l-4 border-gray-800 p-8 shadow-sm hover:shadow-md transition rounded-r-xl">
               <h4 className="font-semibold text-md mb-1 text-gray-800">
-                Sep 2024 - Jan 2025
+                Feb 2024 - Jan 2025
               </h4>
               <p className="font-bold text-lg">
-                Lab Assistant - Institut Teknologi Sumatera (ITERA)
+                Frontend Developer - Christian Student Association ITERA
               </p>
               <p className="text-sm text-gray-600 mt-2">
-                As a lab assistant in the Informatics Department, I facilitated
-                practical sessions on computer fundamentals and Excel VBA
-                automation for first-year students. I guided students in
-                building macros, data manipulation scripts, and process
-                automation, ensuring a solid understanding of applied
-                programming concepts and problem-solving in a technical
-                environment.
+                Developed a centralized organizational profile website using React, 
+                JavaScript, and Tailwind CSS. Enhanced internal user experience 
+                by building intuitive interfaces, ensuring stable content delivery 
+                through REST API integration, and improving cross-device consistency.
               </p>
             </div>
           </div>
         </div>
       </section>
-      {/* "use client"; import {motion} from "framer-motion"; */}
-      {/* SKILL OVERVIEW - Animated Version */}
-      <section className="bg-gray-50 py-24 px-6 sm:px-10 lg:px-24 text-gray-800">
+      
+      <section className="bg-gray-50 py-24 px-6 sm:px-10 lg:px-24 text-gray-800 pb-12">
         <div className="max-w-5xl mx-auto text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Technical Expertise</h2>
+          <h2 className="text-3xl font-bold mb-4">Technical Expertise & Skills</h2>
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
             I design and build scalable, data-driven systems that bridge backend
             performance, frontend experience, and automation intelligence.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
           {[
             {
               title: "Full-Stack Development",
@@ -231,19 +211,19 @@ export default function About() {
               title: "Backend Engineering",
               level: "96%",
               color: "from-gray-700 to-gray-900",
-              desc: "API design, authentication, and data flow optimization using Python, PostgreSQL, and Laravel Sanctum.",
+              desc: "API design, authentication, and data flow optimization using Python, PostgreSQL, and Laravel.",
             },
             {
               title: "AI & Automation",
               level: "88%",
               color: "from-violet-500 to-purple-700",
-              desc: "Workflow automation and AI-powered decision systems built with Python, Pandas, NumPy, and LLM integrations.",
+              desc: "Workflow automation and AI-powered decision systems built with Python, Pandas, and LLM integrations.",
             },
             {
               title: "Frontend Engineering",
               level: "85%",
               color: "from-sky-400 to-blue-600",
-              desc: "Responsive and accessible interfaces with Tailwind CSS, Framer Motion, and SEO-focused design.",
+              desc: "Responsive and accessible interfaces with React, TypeScript, Tailwind CSS, and Framer Motion.",
             },
             {
               title: "DevOps & Tools",
@@ -290,11 +270,40 @@ export default function About() {
           ))}
         </div>
 
-        <div className="max-w-5xl mx-auto text-center mt-14">
-          <p className="text-xs text-gray-500">
+        <div className="max-w-4xl mx-auto text-center border-t border-gray-200 pt-16">
+          <h3 className="text-2xl font-bold mb-6">Soft Skills</h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              "Problem Solving",
+              "Analytical Thinking",
+              "System Thinking",
+              "Teamwork & Collaboration",
+              "Communication",
+              "Adaptability",
+              "Ownership & Responsibility"
+            ].map((skill, index) => (
+              <motion.span
+                key={index}
+                className="bg-white text-gray-700 px-5 py-2.5 rounded-full text-sm font-medium shadow-sm border border-gray-200 hover:shadow-md hover:-translate-y-1 transition duration-300"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto text-center mt-16 pt-8 border-t border-gray-100 flex flex-col items-center justify-center">
+          <p className="text-xs text-gray-500 mb-3">
             Daily Tools: VS Code, Postman, Docker, Figma, Notion, JIRA <br />
-            Preferred Stack: Laravel + React.js + PostgreSQL + Tailwind + Flask
+            Preferred Stack: Laravel + React.js + PostgreSQL + Tailwind + Python
           </p>
+          <span className="inline-block bg-gray-100 text-gray-500 text-xs px-3 py-1.5 rounded-full font-mono mt-2">
+            Last updated: {lastUpdated}
+          </span>
         </div>
       </section>
     </>

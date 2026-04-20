@@ -12,70 +12,81 @@ import {
   FaRocket,
 } from "react-icons/fa";
 
+export async function getStaticProps() {
+  const lastUpdated = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date());
+
+  return {
+    props: {
+      lastUpdated,
+    },
+  };
+}
+
 const services = [
   {
     icon: (
       <FaCode className="text-4xl mb-4 text-blue-600 group-hover:text-white transition-colors" />
     ),
     title: "Full-Stack Web Development",
-    desc: "End-to-end development of scalable web applications using Laravel, Next.js, and React.js. Includes RESTful API, authentication, and database integration for seamless user experiences.",
+    desc: "End-to-end development of responsive, scalable web applications using ReactJS, TypeScript, Next.js, and Laravel. Includes RESTful API and database integration.",
   },
   {
     icon: (
       <FaBrain className="text-4xl mb-4 text-purple-600 group-hover:text-white transition-colors" />
     ),
     title: "AI & Workflow Automation",
-    desc: "Building intelligent automation systems and AI integrations using Python, Flask, and LLM APIs to streamline data processing and decision-making workflows.",
+    desc: "Building intelligent automation systems and AI integrations using Python, Pandas, Flask, and LLM APIs to streamline large-scale data processing and decision-making.",
   },
   {
     icon: (
       <FaServer className="text-4xl mb-4 text-emerald-600 group-hover:text-white transition-colors" />
     ),
     title: "Backend API Development",
-    desc: "Designing and implementing robust, secure backend APIs with efficient database schemas, caching, and validation logic to support web or mobile frontends.",
+    desc: "Designing and implementing robust, secure backend APIs with efficient database queries using PostgreSQL and MySQL to support seamless frontend integration.",
   },
   {
     icon: (
       <FaNetworkWired className="text-4xl mb-4 text-orange-600 group-hover:text-white transition-colors" />
     ),
     title: "System Architecture & DevOps",
-    desc: "Planning and deploying reliable infrastructures with CI/CD, Docker, and VPS hosting. Focused on scalability, performance, and long-term system stability.",
+    desc: "Planning and deploying reliable infrastructures with CI/CD, Docker, and VPS hosting. Focused on scalability, performance optimization, and long-term stability.",
   },
   {
     icon: (
       <FaCogs className="text-4xl mb-4 text-red-600 group-hover:text-white transition-colors" />
     ),
-    title: "Business System Development",
-    desc: "Custom web-based systems like dashboards, inventory management, and workflow automation tools tailored to fit your business needs and operations.",
+    title: "Business System & Dashboards",
+    desc: "Custom web-based systems like real-time tracking dashboards, automated reporting tools, and internal management systems tailored to fit business operations.",
   },
   {
     icon: (
       <FaRocket className="text-4xl mb-4 text-indigo-600 group-hover:text-white transition-colors" />
     ),
-    title: "Deployment & Optimization",
-    desc: "Deploying, optimizing, and monitoring applications for production. Includes server configuration, performance tuning, SSL, and analytics integration.",
+    title: "Performance Optimization",
+    desc: "Optimizing application performance, cross-browser compatibility, and backend queries to improve accessibility, loading speed, and overall user experience.",
   },
 ];
 
-const Services = () => {
+export default function Services({ lastUpdated }: { lastUpdated: string }) {
   return (
     <>
       <Head>
         <title>Services - Elkana Juanro Manullang</title>
         <meta
           name="description"
-          content="Explore professional services by Elkana Juanro Manullang — Full-Stack Developer specializing in Laravel, React.js, and AI Automation systems."
+          content="Explore professional services by Elkana Juanro Manullang — Full-Stack Developer specializing in Laravel, React.js, TypeScript, Python, and AI Automation systems."
         />
       </Head>
 
-      {/* Navbar Fixed */}
       <div className="fixed top-0 w-full z-50">
         <Navbar />
       </div>
 
-      {/* SERVICES SECTION */}
       <section className="min-h-screen pt-28 pb-20 flex flex-col items-center px-6 text-center bg-gray-50 text-gray-800 overflow-hidden relative">
-        {/* Gradient glow background */}
         <motion.div
           className="absolute top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/10 to-violet-500/10 rounded-full blur-3xl opacity-70 pointer-events-none"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -131,15 +142,24 @@ const Services = () => {
                 {service.icon}
               </div>
               <h3 className="text-xl font-bold mt-4 mb-3">{service.title}</h3>
-              <p className="text-sm text-gray-500 group-hover:text-gray-300 leading-relaxed">
+              <p className="text-sm text-gray-500 group-hover:text-gray-600 leading-relaxed">
                 {service.desc}
               </p>
             </motion.div>
           ))}
         </div>
+
+        <motion.div 
+          className="relative z-10 mt-16 pt-8 border-t border-gray-200 w-full max-w-7xl flex justify-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <span className="inline-block bg-gray-200/50 text-gray-500 text-xs px-3 py-1.5 rounded-full font-mono">
+            Last updated: {lastUpdated}
+          </span>
+        </motion.div>
       </section>
     </>
   );
-};
-
-export default Services;
+}

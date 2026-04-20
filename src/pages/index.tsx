@@ -62,8 +62,7 @@ export default function Home() {
                   "Elkana Jnr Manullang",
                   "Software Engineer",
                   "Backend Specialist",
-                  "AI Engineer",
-                  "Founder @ Celestara Eterna",
+                  "React and Laravel",
                 ]}
                 loop={true}
                 cursor

@@ -1,7 +1,9 @@
+"use client";
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Head from "next/head";
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import Navbar from "@/components/Navbar";
 
 interface FormData {
   name: string;
@@ -37,13 +39,17 @@ export default function Contact() {
       return;
     }
 
-    const { name, email, judul, message } = form;
+    const { name, email, noTelp, judul, message } = form;
     if (!name || !email || !judul || !message) {
       alert("Harap lengkapi semua field wajib.");
       return;
     }
 
     setStatus("loading");
+
+    const waText = `Halo Elkana,\n\nSaya menghubungi Anda dari website portfolio.\n\nNama: ${name}\nEmail: ${email}\nNo. Telp: ${noTelp || "-"}\n\nJudul: ${judul}\n\nPesan:\n${message}`;
+    const waUrl = `https://wa.me/6281382394412?text=${encodeURIComponent(waText)}`;
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -51,16 +57,14 @@ export default function Contact() {
         body: JSON.stringify({ ...form, captcha }),
       });
 
-      const data = await res.json();
       if (res.ok) {
         setStatus("success");
         setForm({ name: "", email: "", noTelp: "", judul: "", message: "" });
+        window.open(waUrl, "_blank");
       } else {
-        console.error(data.error);
         setStatus("error");
       }
     } catch (err) {
-      console.error(err);
       setStatus("error");
     }
   };
@@ -87,9 +91,12 @@ export default function Contact() {
         />
       </Head>
 
+      <div className="fixed top-0 w-full z-50 left-0">
+        <Navbar />
+      </div>
+
       <h1 className="text-4xl font-bold text-center mb-8">Contact Me</h1>
 
-      {/* Info Kontak */}
       <div className="flex flex-col md:flex-row justify-center text-center gap-12 mb-12">
         <div>
           <div className="flex justify-center mb-2">
@@ -114,7 +121,6 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Formulir */}
       <form
         onSubmit={handleSubmit}
         className="max-w-2xl mx-auto grid gap-6"
@@ -131,7 +137,7 @@ export default function Contact() {
           value={form.name}
           onChange={handleChange}
           required
-          className="border p-3 rounded-md w-full bg-gray-100"
+          className="border p-3 rounded-md w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
         />
         <label htmlFor="email" className="sr-only">
           Email
@@ -144,7 +150,7 @@ export default function Contact() {
           value={form.email}
           onChange={handleChange}
           required
-          className="border p-3 rounded-md w-full bg-gray-100"
+          className="border p-3 rounded-md w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
         />
         <label htmlFor="noTelp" className="sr-only">
           Phone Number
@@ -156,7 +162,7 @@ export default function Contact() {
           placeholder="Phone Number (Optional)"
           value={form.noTelp}
           onChange={handleChange}
-          className="border p-3 rounded-md w-full bg-gray-100"
+          className="border p-3 rounded-md w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
         />
         <label htmlFor="judul" className="sr-only">
           Message Title
@@ -169,7 +175,7 @@ export default function Contact() {
           value={form.judul}
           onChange={handleChange}
           required
-          className="border p-3 rounded-md w-full bg-gray-100"
+          className="border p-3 rounded-md w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
         />
         <label htmlFor="message" className="sr-only">
           Message
@@ -182,7 +188,7 @@ export default function Contact() {
           value={form.message}
           onChange={handleChange}
           required
-          className="border p-3 rounded-md w-full bg-gray-100"
+          className="border p-3 rounded-md w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
         ></textarea>
 
         <ReCAPTCHA
@@ -192,22 +198,22 @@ export default function Contact() {
 
         <button
           type="submit"
-          className="bg-black text-white py-3 px-6 rounded-md hover:bg-gray-900 transition"
+          disabled={status === "loading"}
+          className="bg-black text-white py-3 px-6 rounded-md hover:bg-gray-900 transition disabled:bg-gray-400"
         >
-          Submit
+          {status === "loading" ? "Sending..." : "Submit"}
         </button>
 
         {status === "success" && (
-          <p className="text-green-600">
-            Your message has been sent successfully!
+          <p className="text-green-600 font-medium text-center">
+            Your message has been sent! Redirecting to WhatsApp...
           </p>
         )}
         {status === "error" && (
-          <p className="text-red-600">
+          <p className="text-red-600 font-medium text-center">
             Failed to send your message. Please try again.
           </p>
         )}
-        {status === "loading" && <p className="text-gray-500">Sending...</p>}
       </form>
     </div>
   );
