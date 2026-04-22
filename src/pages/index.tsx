@@ -116,7 +116,7 @@ export default function Home() {
 
           {/* Tombol Download CV */}
           <a
-            href="/assets/files/Elkana_CV.pdf"
+            href="/assets/files/Curriculum Vitae _ Elkana Juanro Manullang.pdf"
             download
             className="mt-8 text-sm bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition font-bold z-10 tracking-wide"
             aria-label="Download CV"

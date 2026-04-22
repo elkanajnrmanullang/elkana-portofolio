@@ -128,7 +128,7 @@ export default function About({ lastUpdated }: { lastUpdated: string }) {
 
             <div className="bg-white border-l-4 border-purple-600 p-8 shadow-sm hover:shadow-md transition rounded-r-xl">
               <h4 className="font-semibold text-md mb-1 text-purple-600">
-                Mar 2024 - Mar 2026
+                Mar 2024 - Feb 2026
               </h4>
               <p className="font-bold text-lg">Full-Stack Engineer - Celestara Eterna</p>
               <p className="text-sm text-gray-600 mt-2">
