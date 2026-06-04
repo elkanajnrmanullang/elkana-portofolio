@@ -60,18 +60,18 @@ export default function Home() {
     <Layout>
       <section className="relative min-h-screen flex flex-col justify-end px-6 md:px-16 pb-20 overflow-hidden bg-navy-900">
         <div 
-          className="absolute inset-0 bg-[url('/assets/images/background-home.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity"
+          className="absolute inset-0 bg-[url('/assets/images/background-home.jpg')] bg-cover bg-center bg-no-repeat opacity-45 mix-blend-luminosity"
         ></div>
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/80 to-transparent"></div>
         <div className="absolute -bottom-[100px] -right-[100px] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(201,168,76,0.08)_0%,transparent_70%)] pointer-events-none"></div>
 
         <div className="relative z-10">
-          <p className="font-mono text-[0.7rem] tracking-[0.25em] text-gold-500 uppercase mb-5 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            Full Stack Engineer · Bandar Lampung, Indonesia
+          <p className="font-mono text-[0.8rem] tracking-[0.25em] text-gold-1000 uppercase mb-5 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            Full Stack Engineer · Frontend Engineer
           </p>
           
           <h1 className="font-serif text-[clamp(3.5rem,8vw,8rem)] font-light leading-[0.95] tracking-[-0.02em] text-cream-50 mb-2.5 animate-fade-up" style={{ animationDelay: '0.5s' }}>
-            Elkana<br /><em className="italic text-gold-500">Juanro.</em>
+            Elkana Juanro<br /><em className="italic text-gold-500">Manullang</em>
           </h1>
           
           <p className="font-serif text-[clamp(1.2rem,2.5vw,2rem)] font-light text-cream-200 mb-10 animate-fade-up h-[3rem] md:h-auto" style={{ animationDelay: '0.7s' }}>
@@ -81,7 +81,7 @@ export default function Home() {
 
           <div className="flex flex-wrap items-center gap-x-10 gap-y-4 animate-fade-up" style={{ animationDelay: '0.9s' }}>
             <div className="flex items-center gap-2 font-mono text-[0.7rem] text-cream-200 tracking-[0.06em]">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-500"></span>2.5 Years Experience
+              <span className="w-1.5 h-1.5 rounded-full bg-gold-500"></span>2.5 Years+ Experience
             </div>
             <div className="flex items-center gap-2 font-mono text-[0.7rem] text-cream-200 tracking-[0.06em]">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-500"></span>Laravel · React · Python · Supabase
