@@ -7,6 +7,7 @@ node_modules/
 /.env
 .env.*
 !.env.example  # Allow sharing example template only
+design.html
 
 .vercel/
 .netlify/

@@ -1,336 +1,236 @@
-"use client";
-import React, { useState } from "react";
-import Head from "next/head";
-import { motion } from "framer-motion";
-import { FaGithub, FaLock } from "react-icons/fa";
-import Navbar from "@/components/Navbar";
+import Layout from '@/components/Layout';
 
-interface Project {
-  title: string;
-  category: string;
-  role: string;
-  background: string;
-  impact: string[];
-  description: string;
-  repoLink?: string;
-  techStack: string[];
-}
-
-const allProjects: Project[] = [
+const projects = [
   {
-    title: "AltaQuant - AI Trading & Investment Decision Support System",
-    category: "AI & Automation",
-    role: "Backend & AI Developer",
-    background: "High subjectivity and inefficiency in manual cryptocurrency trading analysis and investment workflows.",
-    impact: [
-      "Improved trading decision accuracy with automated short-term and long-term recommendations.",
-      "Reduced subjective decision-making through LLM-based reasoning and quantitative analysis.",
+    id: 1,
+    title: "Sistem POS Kasir Grosir Sembako",
+    role: "Full-Stack Engineer",
+    date: "Jan 2026 - May 2026",
+    background: "Wholesale grocery businesses rely on manual or generic POS systems that fail to handle FIFO batch inventory, accurate HPP calculation, and tiered pricing, causing profit leakage and inaccurate financial reporting.",
+    achievements: [
+      "Architected a full-stack POS system with a FIFO batch stock engine maintaining one global selling price while tracking HPP per batch.",
+      "Built an HPP engine with dynamic pricing recommendations, price change audit trail, and weighted-average profit calculation.",
+      "Implemented permission-based RBAC with Redis-cached guards, scalable from single-store to multi-branch.",
+      "Built a multi-tier membership system with BullMQ-automated nightly tier evaluation."
     ],
-    description: "Built a backend AI decision support system utilizing Python, NLP pipelines, and LLM integration to generate data-driven financial insights.",
-    techStack: ["Python", "LLM", "NLP", "FinTech"],
+    stack: ["NestJS", "Next.js 14", "PostgreSQL", "Zustand", "Prisma ORM", "BullMQ", "TypeScript", "Tailwind CSS", "shadcn/ui", "React-PDF"]
   },
   {
+    id: 2,
+    title: "Glorya Motor POS & Management Inventory System",
+    role: "Full-Stack Engineer",
+    date: "Apr 2026 - Present",
+    background: "An automotive workshop struggled with highly inefficient manual operational workflows. This resulted in slow checkout queues, severe physical stock discrepancies, and a complete lack of real-time financial accountability.",
+    achievements: [
+      "Architected and deployed a highly responsive, multi-role Progressive Web App (PWA) POS system.",
+      "Engineered ACID-compliant database transactions and enforced Row Level Security (RLS) to manage concurrent real-time inventory locks.",
+      "Developed a secure Cashier Session management module featuring automated financial discrepancy calculations.",
+      "Integrated ESC/POS thermal printing capabilities directly from the browser utilizing the WebUSB API."
+    ],
+    stack: ["Next.js 14", "TypeScript", "Supabase", "Zustand", "TanStack Query", "Tailwind CSS", "WebUSB API", "PWA"]
+  },
+  {
+    id: 3,
     title: "LeafGenn - Automated Retail Leaflet Generator",
-    category: "AI & Automation",
-    role: "Full-Stack Developer",
-    background: "Manual leaflet production was highly time-consuming and heavily prone to human errors in pricing and visual layout.",
-    impact: [
-      "Improved operational efficiency by over 90%, reducing production time from 12 hours to under 1 hour.",
-      "Eliminated human errors through automated data validation and dynamic visual generation.",
+    role: "Full-Stack Engineer",
+    date: "Oct 2025 - Dec 2025",
+    background: "Retail businesses struggle with manual leaflet design, which is highly time-consuming (taking up to 12 hours per batch) and prone to human errors in pricing and layout formatting.",
+    achievements: [
+      "Built an automated end-to-end web system using React (TypeScript) and PHP (Laravel) to digitize manual workflows.",
+      "Engineered automated data validation and dynamic visual generation algorithms."
     ],
-    description: "Independently built a full-stack system using React (TypeScript) and Laravel to digitize and automate manual business workflows.",
-    techStack: ["React.js", "TypeScript", "Laravel", "PHP"],
+    stack: ["React", "TypeScript", "PHP", "Laravel"]
   },
   {
-    title: "MaNIST: End-to-End Handwritten Digit Recognition",
-    category: "AI & Automation",
-    role: "Backend API Developer",
-    background: "Required a robust, production-ready backend architecture to serve a static machine learning model to end-users.",
-    impact: [
-      "Enabled real-time AI interaction by transforming a static model into a production-ready web application.",
-      "Delivered instant predictions with low-latency inference through optimized processing pipelines.",
+    id: 4,
+    title: "AltaQuant (AI Trading Decision Support System)",
+    role: "AI & Backend Engineer",
+    date: "Sep 2025 - Dec 2025",
+    background: "Financial and cryptocurrency investment analysis is often hindered by subjective human bias, inconsistent decision-making, and the inability to efficiently process large volumes of complex quantitative market data.",
+    achievements: [
+      "Developed a hybrid backend architecture combining rule-based logic with Artificial Intelligence.",
+      "Built a decision support system utilizing Python, NLP pipelines, and Large Language Model (LLM) integration to process market data."
     ],
-    description: "Built a scalable backend API using Python (Flask, NumPy) to seamlessly integrate the machine learning model with user interfaces.",
-    techStack: ["Python", "Flask", "Machine Learning", "NumPy", "Pandas"],
+    stack: ["Python", "NLP", "LLM", "AI Integration"]
   },
   {
+    id: 5,
+    title: "MaNIST: End-to-End Handwritten Digit Recognition System",
+    role: "Backend & ML Integration Engineer",
+    date: "Nov 2025 - Dec 2025",
+    background: "Static machine learning models often remain isolated and lack real-world utility because they do not have accessible user interfaces for end-users to interact with the AI easily.",
+    achievements: [
+      "Transformed a static Machine Learning model into a production-ready web application.",
+      "Built a scalable backend API using Python (Flask, NumPy) to connect the trained model seamlessly with the frontend."
+    ],
+    stack: ["Python", "Flask", "NumPy", "Machine Learning"]
+  },
+  {
+    id: 6,
     title: "STB Dismantling & Replacement Reporting System",
-    category: "Web",
-    role: "Software Developer Intern",
-    background: "Processing 40,000+ monthly operational data entries manually via Excel was inefficient and caused data inaccuracies.",
-    impact: [
-      "Improved reporting efficiency by automating the processing of 40,000+ operational data entries per month.",
-      "Reduced manual workload and increased data accuracy by replacing Excel workflows with a web-based system.",
+    role: "Software Developer Internship",
+    date: "June 2025 - Aug 2025",
+    background: "Operational reporting heavily relied on manual Excel workflows. This approach was inefficient, error-prone, and struggled to handle the massive volume of 40,000+ daily data entries.",
+    achievements: [
+      "Engineered a centralized web-based reporting platform and automated ETL pipeline using Python (Flask, Pandas) and PostgreSQL.",
+      "Developed a real-time monitoring dashboard with automated daily calculations and Excel export features."
     ],
-    description: "Built ETL pipelines and responsive real-time dashboards using Python (Flask, Pandas), PostgreSQL, and Tailwind CSS.",
-    techStack: ["Python", "Flask", "Pandas", "PostgreSQL", "Tailwind CSS"],
+    stack: ["Python", "Flask", "Pandas", "PostgreSQL", "ETL"]
   },
   {
-    title: "The Celestern Times - AI-Powered News Platform",
-    category: "Web",
-    role: "Full-Stack Developer",
-    background: "Need for a flexible, scalable content management platform optimized for modern digital media and future AI feature integrations.",
-    impact: [
-      "Enabled scalable content management and delivery by building an AI-integrated news platform.",
-      "Improved system flexibility through a modular architecture supporting future recommendation features.",
+    id: 7,
+    title: "The Celestern Times (AI-Powered Modern News Platform)",
+    role: "Laravel Developer Internship",
+    date: "Mar 2025 - Aug 2025",
+    background: "Traditional news organizations face content synchronization delays, inefficient editorial workflows, and lack scalable architectures required to support high-traffic delivery.",
+    achievements: [
+      "Built a highly flexible full-stack news platform using React.js, PHP (Laravel), and PostgreSQL within an Agile team.",
+      "Implemented full CRUD functionalities, secure Google OAuth authentication, role-based access, and scheduled publishing."
     ],
-    description: "Built role-based access systems, Google authentication, and traffic analytics features using React, Laravel, and PostgreSQL.",
-    techStack: ["React.js", "Laravel", "PostgreSQL", "Tailwind CSS"],
+    stack: ["React.js", "PHP", "Laravel", "PostgreSQL", "OAuth"]
   },
   {
+    id: 8,
     title: "Next.js Full-Stack Developer Portfolio",
-    category: "Web",
     role: "Full-Stack Developer",
-    background: "Need to demonstrate full-stack engineering capabilities through a fast, modern, and production-ready digital presence.",
-    impact: [
-      "Developed a highly optimized, production-ready application using Server-Side Rendering (SSR).",
-      "Enabled real-time client communication via email and WhatsApp API integrations.",
+    date: "May 2025 - May 2025",
+    background: "In a competitive tech industry, demonstrating enterprise-level tech stack mastery requires a performant, SEO-friendly, and production-ready digital footprint.",
+    achievements: [
+      "Built a modern, responsive portfolio web application using Next.js.",
+      "Integrated third-party APIs, including WhatsApp API for real-time communication and Captcha for enhanced security."
     ],
-    description: "Developed a modern web portfolio showcasing technical projects and skills using Next.js, React, and serverless architecture.",
-    repoLink: "https://github.com/elkanajnrmanullang/elkana-portofolio",
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    stack: ["Next.js", "SSR", "SEO", "Third-party APIs"]
   },
   {
-    title: "Game Hand Sign – Edukasi Bahasa Isyarat",
-    category: "Mobile & UI/UX",
-    role: "UI/UX & Mobile App Designer",
-    background: "Lack of engaging and accessible sign language educational tools specifically tailored for deaf children.",
-    impact: [
-      "Improved accessibility to sign language education through an interactive mobile learning application.",
-      "Enhanced engagement by delivering a user-centered design tailored for children with special needs.",
+    id: 9,
+    title: "SIMONI (Employee Performance Monitoring System)",
+    role: "Android Frontend Developer",
+    date: "Sep 2024 - Nov 2024",
+    background: "A government agency relied on manual WhatsApp messages for tracking employee tasks, leading to untracked activities and inefficient monitoring across departments.",
+    achievements: [
+      "Translated complex administrative workflows into an intuitive mobile interface using Flutter and Firebase.",
+      "Implemented real-time geo-tagging and structured daily task tracking features."
     ],
-    description: "Designed the UI/UX for a mobile learning application aimed at supporting inclusive education and social impact.",
-    techStack: ["UI/UX Design", "Figma", "User Research"],
+    stack: ["Flutter", "Firebase", "Geo-tagging", "Mobile App"]
   },
   {
-    title: "SEGAR: Air Quality Monitoring Platform",
-    category: "Mobile & UI/UX",
-    role: "UI/UX Designer",
-    background: "Need for an accessible digital platform to assess real-time local air quality and increase public awareness of air pollution.",
-    impact: [
-      "Enhanced public awareness of air pollution through integrated educational blog features.",
-      "Delivered an intuitive interface using strict User-Centered Design (UCD) methodologies.",
-    ],
-    description: "Designed a mobile and web-based application providing real-time Air Quality Index (AQI) ratings based on live GPS data.",
-    techStack: ["UI/UX Design", "Wireframing", "HCI"],
-  },
-  {
-    title: "SIMONI - Employee Performance Monitoring System",
-    category: "Mobile & UI/UX",
-    role: "Flutter Developer",
-    background: "Traditional manual employee attendance and task reporting systems lacked transparency and real-time operational visibility.",
-    impact: [
-      "Improved operational transparency and efficiency by digitizing task reporting systems.",
-      "Enabled accurate real-time tracking of employees through integrated geo-tagging features.",
-    ],
-    description: "Developed a user-friendly mobile application interface using Flutter to support rapid adoption across non-technical users.",
-    techStack: ["Flutter", "Dart", "Firebase", "Frontend"],
-  },
-  {
-    title: "Inventory Management System",
-    category: "System",
+    id: 10,
+    title: "Retail Inventory Management System",
     role: "Full-Stack Developer",
-    background: "Academic requirement to construct a comprehensive data management web application demonstrating core web programming concepts.",
-    impact: [
-      "Demonstrated robust data management capabilities with dynamic CRUD operations and state persistence.",
-      "Successfully deployed a secure and accessible application applying OOP principles.",
+    date: "Oct 2024 - Oct 2024",
+    background: "A traditional retail store struggled with manual stock tracking methods, resulting in frequent data discrepancies, missing inventory, and highly inefficient day-to-day stock management operations.",
+    achievements: [
+      "Designed and developed a real-time web-based inventory management system using PHP, MySQL, and JavaScript.",
+      "Implemented secure CRUD operations, data validation, session management, and Object-Oriented Programming (OOP) principles."
     ],
-    description: "Developed an inventory system from scratch utilizing PHP, MySQL, and JavaScript, featuring form handling, validation, and session management.",
-    techStack: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
+    stack: ["PHP", "MySQL", "JavaScript", "OOP"]
   },
   {
-    title: "Web Informasi Pariwisata Kota Bandung",
-    category: "Web",
+    id: 11,
+    title: "PNBWDC - Web Design Competition (Top 8 National)",
     role: "Frontend Developer",
-    background: "Participation in the competitive National Politeknik Negeri Bali Web Design Competition (PNBWDC).",
-    impact: [
-      "Achieved Top 8 out of 82 participating teams in a national-level web design competition.",
-      "Delivered a highly responsive and visually engaging user interface prioritizing accessibility.",
+    date: "Aug 2024 - Sep 2024",
+    background: "The local tourism sector needed a highly engaging, responsive, and performant digital platform to attract digital users and effectively showcase Bandung City's tourism potential on a national level.",
+    achievements: [
+      "Built an interactive tourism information platform from scratch using HTML, CSS, and JavaScript.",
+      "Applied User-Centered Design (UCD) principles to ensure clean code and visually engaging interfaces."
     ],
-    description: "Developed a modern, responsive tourism website focusing on a strong user experience using clean HTML, CSS, and JavaScript.",
-    repoLink: "https://github.com/elkanajnrmanullang/web-wisata-bandung",
-    techStack: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-  },
-  {
-    title: "Marble Race Game (Game Balap Kelereng)",
-    category: "System",
-    role: "Backend & Game Developer",
-    background: "Academic objective to practically implement Object-Oriented Programming (OOP) principles within a functional desktop application.",
-    impact: [
-      "Successfully implemented complex core game mechanics, structural logic, and physical interactions.",
-      "Executed effective team-based development and version control collaboration.",
-    ],
-    description: "Built an interactive desktop racing game utilizing Python and OOP principles to handle backend game logic.",
-    repoLink: "https://github.com/elkanajnrmanullang/Tubes-PBO-Balap-Kelereng",
-    techStack: ["Python", "OOP", "Version Control"],
-  },
+    stack: ["HTML", "CSS", "JavaScript", "UI/UX"]
+  }
 ];
 
-const categories = [
-  "All",
-  "AI & Automation",
-  "Web",
-  "Mobile & UI/UX",
-  "System",
+const certifications = [
+  { id: 1, title: "Software Engineer", issuer: "HackerRank", year: "2026" },
+  { id: 2, title: "Frontend Developer (React)", issuer: "HackerRank", year: "2026" },
+  { id: 3, title: "Intermediate Full Stack JavaScript Web Developer", issuer: "ITBOX", year: "2024" }
 ];
 
-export default function Works() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredProjects = selectedCategory === "All"
-    ? allProjects
-    : allProjects.filter((p) => p.category === selectedCategory);
-
+export default function Project() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 pb-20 relative overflow-hidden">
-      <Head>
-        <title>Works & Projects - Elkana Juanro Manullang</title>
-        <meta
-          name="description"
-          content="Explore selected projects by Elkana Juanro Manullang — AI systems, full-stack web apps, and automation-driven solutions."
-        />
-      </Head>
+    <Layout title="Projects | Elkana Juanro Manullang">
+      <section className="pt-32 pb-20 px-6 md:px-16 min-h-screen bg-navy-900">
+        <div className="max-w-7xl mx-auto">
+          
+          <div className="mb-20 animate-fade-up">
+            <span className="font-mono text-[0.65rem] tracking-[0.2em] text-gold-500 uppercase mb-3 block">03 / Projects & Certifications</span>
+            <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-light text-cream-50 leading-tight">
+              Selected <br className="hidden md:block" />
+              <em className="italic text-gold-500">Works.</em>
+            </h1>
+            <div className="w-16 h-[1px] bg-gold-500 mt-6"></div>
+          </div>
 
-      <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-violet-500/10 rounded-full blur-3xl opacity-70 pointer-events-none"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      />
-
-      <div className="fixed top-0 w-full z-50">
-        <Navbar />
-      </div>
-
-      <div className="text-center pt-28 max-w-7xl mx-auto relative z-10 px-6 md:px-12">
-        <motion.h1
-          className="text-4xl font-bold mb-4 tracking-tight"
-          initial={{ y: 40, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          Selected Projects
-        </motion.h1>
-        <motion.p
-          className="text-gray-500 mb-12 max-w-2xl mx-auto"
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          A comprehensive showcase of AI systems, automation tools, and full-stack
-          applications outlining roles, challenges, and measurable impacts.
-        </motion.p>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-14">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                selectedCategory === cat
-                  ? "bg-black text-white shadow-lg scale-105"
-                  : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-xl transition-all duration-500 relative flex flex-col h-full group"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
-              <div className="flex justify-between items-start mb-5">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-3 inline-block">
-                    {project.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight pr-4">
-                    {project.title}
-                  </h3>
-                </div>
-                {project.repoLink ? (
-                  <a
-                    href={project.repoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-black transition-colors text-2xl flex-shrink-0"
-                    title="View Source on GitHub"
-                  >
-                    <FaGithub />
-                  </a>
-                ) : (
-                  <div
-                    className="text-gray-300 text-xl flex-shrink-0 flex items-center justify-center p-1 bg-gray-50 rounded-full"
-                    title="Private Repository / Proprietary System"
-                  >
-                    <FaLock />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+            {projects.map((project, index) => (
+              <div 
+                key={project.id} 
+                className="bg-navy-800/50 border border-gold-500/10 p-6 flex flex-col hover:border-gold-500/40 hover:-translate-y-1 transition-all duration-300 animate-fade-up group"
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
+                <div className="mb-4">
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <h3 className="font-serif text-xl text-cream-50 font-medium leading-snug group-hover:text-gold-400 transition-colors">{project.title}</h3>
                   </div>
-                )}
-              </div>
+                  <div className="font-mono text-[0.65rem] text-gold-500 tracking-widest uppercase mb-1">{project.role}</div>
+                  <div className="font-mono text-[0.6rem] text-cream-300 tracking-wider uppercase">{project.date}</div>
+                </div>
 
-              <div className="mb-6 flex items-center gap-2">
-                <span className="bg-gray-800 text-white text-xs font-semibold px-3 py-1 rounded-md">
-                  Role
-                </span>
-                <span className="text-gray-700 font-medium text-sm">
-                  {project.role}
-                </span>
-              </div>
-
-              <div className="space-y-5 flex-grow text-sm text-gray-600">
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1.5 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                    Background Problem
-                  </h4>
-                  <p className="leading-relaxed pl-3.5 border-l-2 border-gray-100">
+                <div className="mb-6 flex-grow">
+                  <p className="font-sans text-sm text-cream-200 leading-relaxed font-light mb-4">
                     {project.background}
                   </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1.5 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    Key Results & Impact
-                  </h4>
-                  <ul className="list-disc list-outside pl-7 space-y-1.5">
-                    {project.impact.map((item, idx) => (
-                      <li key={idx} className="leading-relaxed">{item}</li>
+                  <ul className="flex flex-col gap-2 m-0 p-0 list-none">
+                    {project.achievements.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 font-sans text-xs text-cream-100 font-light leading-relaxed">
+                        <svg className="w-3 h-3 text-gold-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>{item}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1.5 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-                    Description
-                  </h4>
-                  <p className="leading-relaxed pl-3.5 border-l-2 border-gray-100">
-                    {project.description}
-                  </p>
+
+                <div className="pt-4 border-t border-gold-500/10 mt-auto">
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map(tech => (
+                      <span key={tech} className="px-2.5 py-1 bg-navy-900 border border-navy-700 text-cream-200 text-[0.65rem] font-mono rounded-sm">{tech}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
 
-              <div className="mt-8 pt-5 border-t border-gray-100 flex flex-wrap gap-2">
-                {project.techStack.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-gray-50 border border-gray-200 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-md"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          <div>
+            <div className="flex items-center gap-4 mb-10 border-b border-gold-500/20 pb-4 animate-fade-up">
+              <svg className="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              <h2 className="font-serif text-3xl text-cream-50 font-light">Certifications</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {certifications.map((cert, index) => (
+                <div 
+                  key={cert.id} 
+                  className="flex items-start gap-4 p-5 bg-navy-800/30 border border-gold-500/10 hover:border-gold-500/30 transition-colors animate-fade-up"
+                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+                >
+                  <div className="w-10 h-10 shrink-0 flex items-center justify-center border border-gold-500/30 rounded-full bg-gold-500/5 text-gold-500">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </div>
+                  <div>
+                    <h3 className="font-sans text-[0.95rem] text-cream-50 font-medium mb-1">{cert.title}</h3>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[0.65rem] text-cream-300 tracking-widest uppercase">{cert.issuer}</span>
+                      <span className="w-1 h-1 rounded-full bg-gold-500/50"></span>
+                      <span className="font-mono text-[0.65rem] text-gold-500 tracking-widest">{cert.year}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
-      </div>
-    </div>
+      </section>
+    </Layout>
   );
 }
