@@ -103,7 +103,7 @@ const projects = [
   },
   {
     id: 9,
-    title: "SIMONI (Employee Performance Monitoring System)",
+    title: "Employee Performance Monitoring System - UPTD Balai Pengawasan Mutu dan Keamanan Pangan Provinsi Lampung ",
     role: "Android Frontend Developer",
     date: "Sep 2024 - Nov 2024",
     background: "A government agency relied on manual WhatsApp messages for tracking employee tasks, leading to untracked activities and inefficient monitoring across departments.",
